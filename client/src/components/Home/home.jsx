@@ -5,16 +5,15 @@ import { getPokemones } from '../../actions/index';
 import {Link} from 'react-router-dom'; 
 import Cards from '../Cards/cards';
 import Paginado from '../Paginado/paginado';
-import Filtrado from '../Filtrado/filtrado';
 
 const Home = () => {
     const dispatch = useDispatch();
-    const allPokemones = useSelector ((state) => state.pokemones);
+    const pokemones = useSelector ((state) => state.pokemones);
     const [currentPage, setCurrentPage] = useState(1);
     const [pokemonesPerPage, setPokemonesPerPage] = useState(12);
     const indexLastPokemon = currentPage * pokemonesPerPage;
     const indexFirstPokemon = indexLastPokemon - pokemonesPerPage;
-    const currentPokemon = allPokemones.slice(indexFirstPokemon, indexLastPokemon)
+    const currentPokemon = pokemones.slice(indexFirstPokemon, indexLastPokemon)
 
     const paginado = (pageNumber) => {
         setCurrentPage(pageNumber)
@@ -32,10 +31,6 @@ const Home = () => {
 
         return ( 
          <div>
-
-
-
-
                 <Link to='/pokemon'>
                     Crear Pokemon
                 </Link>
@@ -45,7 +40,6 @@ const Home = () => {
                 <button onClick={e => {handleClick(e)}}>
                     volver a cargar todos los pokemones
                 </button>
-
 
            <div>
                 <span>ORDENAR POR:</span>
@@ -57,13 +51,11 @@ const Home = () => {
                     </select>
             </div> 
             
-            <div>
-                <Filtrado />
-            </div>
 
-        <Paginado pokemonesPerPage={pokemonesPerPage} allPokemones={allPokemones.length} paginado={paginado}/>
 
-         <Cards pokemones={currentPokemon}/>
+        <Paginado pokemonesPerPage={pokemonesPerPage} allPokemones={pokemones.length} paginado={paginado}/>
+        
+        <Cards pokemones={currentPokemon}/>
 
 
          </div>

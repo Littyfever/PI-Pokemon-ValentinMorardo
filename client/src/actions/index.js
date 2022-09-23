@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const getPokemones = (payload) => {
+const getPokemones = () => {
     return async function (dispatch) {
         var allPokemones = await axios.get('http://localhost:3001/pokemons', {
             
@@ -23,5 +23,7 @@ const getTypes = () => {
         })
     }
 }
+
+
 
 export  {getPokemones, getTypes};
