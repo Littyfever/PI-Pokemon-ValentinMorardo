@@ -24,6 +24,13 @@ const getTypes = () => {
     }
 }
 
+const filterPokemones = (payload) => {
+    return {
+        type: 'FILTER_POKEMONES',
+        payload: payload
+    }
+}
 
 
-export  {getPokemones, getTypes};
+
+export  {getPokemones, getTypes, filterPokemones};

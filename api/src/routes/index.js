@@ -17,7 +17,7 @@ const getApiInfo = async () => {
                 id: pokemonDetail.data.id,
                 nombre: pokemonDetail.data.name,
 
-                tipos: pokemonDetail.data.types.map(el => {
+                Tipos: pokemonDetail.data.types.map(el => {
                     return ({
                         nombre: el.type.name
                     })

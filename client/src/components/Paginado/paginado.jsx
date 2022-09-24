@@ -11,16 +11,18 @@ const paginado = ({pokemonesPerPage, allPokemones, paginado}) => {
 
     return (
         <nav>
+
             <ul>
                 {
                     pageNumbers &&  pageNumbers.map(number => (
                         <li className="number" key={number}>
-                            <a onClick={()=> paginado(number) }>{number}</a>
+                            <button onClick={()=> paginado(number) }>{number}</button>
   
                         </li>
                     ))
                 }
             </ul>
+
         </nav>
     )
 }
