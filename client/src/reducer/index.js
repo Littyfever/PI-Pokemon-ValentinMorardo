@@ -7,108 +7,113 @@ const initialState =  {
 const rootReducer = (state = initialState, action) => {
     switch(action.type) {
 
-        case 'GET_POKEMONES':
-            return {
-                ...state,
-                pokemones: action.payload,
-                allPokemones: action.payload
+case 'GET_POKEMONES':
+    return {
+        ...state,
+        pokemones: action.payload, /* pokemones q renderizo en el home */
+        allPokemones: action.payload /* pokemones q me traigo intactos de la db y api para trabajarlos aca */
+    }
 
+/*  ||||||||||||||||||||||||||||||||||||||||||||||||   */
+
+case 'GET_TYPES':
+    return {
+        ...state,
+        tipos: action.payload
+    }
+
+/*  ||||||||||||||||||||||||||||||||||||||||||||||||   */
+
+case 'FILTER_POKEMONES':
+    const filtros = Object.entries(action.payload);
+
+    let filtrados = [...state.allPokemones].filter((pokemon) => {
+        let origen = false;
+        let tipo = false;
+
+        filtros.forEach(([propiedad, valor]) => {
+            if(propiedad === 'createdInDb') {
+                if(valor === 'Existentes') {
+                    origen = !pokemon[propiedad];
+                }
+                if(valor === 'Creados'){
+                    origen = pokemon[propiedad];
+                }
+                if(valor === 'Todos'){
+                    origen = true;  
+                }
             }
 
-            case 'GET_TYPES':
-                return {
-                    ...state,
-                    tipos: action.payload
+            if(propiedad === 'Tipos') {
+                tipo = pokemon[propiedad].find((tipo) => tipo.nombre === valor);
+
+                if(valor === "Todos"){
+                    tipo = true;
                 }
+            }
+        })
+        return origen && tipo;
+    })
 
+    if(action.payload.orden === 'A-Z') {
+        filtrados = filtrados.sort((a,b) => {
 
-            case 'FILTER_POKEMONES':
+            if(a.nombre.toLowerCase() > b.nombre.toLowerCase()) {
+                return 1;
+            }
+            if(a.nombre.toLowerCase() < b.nombre.toLowerCase()) {
+                return -1;
+            }
+            return 0;
+        })}
 
-                const filtros = Object.entries(action.payload);
-                    
-                let filtrados = [...state.allPokemones].filter((pokemon) => {
-                    let origen = false;
-                    let tipo = false;
+    if(action.payload.orden === 'Z-A') {
+        filtrados = filtrados.sort((a,b) => {
+            if(a.nombre.toLowerCase() < b.nombre.toLowerCase()) {
+                return 1;
+            }
+            if(a.nombre.toLowerCase() > b.nombre.toLowerCase()) {
+                return -1;
+            }
+            return 0;
+        })
+    }
 
-                    filtros.forEach(([propiedad, valor]) => {
-                        if(propiedad === 'createdInDb') {
-                            if(valor === 'Existentes') {
-                                origen = !pokemon[propiedad];
-                            }
-                            if(valor === 'Creados'){
-                                origen = pokemon[propiedad];
-                            }
-                            if(valor === 'Todos'){
-                                origen = true;  
-                            }
-                        }
+    if(action.payload.orden === '> Ataque') {
+        filtrados = filtrados.sort((a,b) => {
+            if(parseInt(a.ataque) < parseInt(b.ataque)) {
+                return 1;
+            }
+            if(parseInt(a.ataque) > parseInt(b.ataque)) {
+                return -1;
+            }
+            return 0;
+        })
+    }
 
-                        if(propiedad === 'Tipos') {
-                            tipo = pokemon[propiedad].find((tipo) => tipo.nombre === valor);
+    if(action.payload.orden === '< Ataque') {
+        filtrados = filtrados.sort((a,b) => {
+            if(parseInt(a.ataque) > parseInt(b.ataque)) {
+                return 1;
+            }
+            if(parseInt(a.ataque) < parseInt(b.ataque)){
+                return -1;
+            }
+            return 0;
+        })
+    }
+    return {
+        ...state,
+        pokemones: filtrados
+    }
+    
+/*  ||||||||||||||||||||||||||||||||||||||||||||||||   */
+case 'GET_NAME_POKEMON':
+    return {
+        ...state,
+        pokemones: action.payload
+    }
 
-                            if(valor === "Todos"){
-                                tipo = true;
-                            }
-                        }
-                        
-                    })
-
-                   
-                    return origen && tipo;
-                })
-                
-                if(action.payload.orden === 'A-Z') {
-                    filtrados = filtrados.sort((a,b) => {
-
-                        if(a.nombre.toLowerCase() > b.nombre.toLowerCase()) {
-                            return 1;
-                        }
-                        if(a.nombre.toLowerCase() < b.nombre.toLowerCase) {
-                            return -1;
-                        }
-                        return 0;
-                    })}
-
-                if(action.payload.orden === 'Z-A') {
-                    filtrados = filtrados.sort((a,b) => {
-                        if(a.nombre.toLowerCase() < b.nombre.toLowerCase()) {
-                            return 1;
-                        }
-                        if(a.nombre.toLowerCase() > b.nombre.toLowerCase()) {
-                            return -1;
-                        }
-                        return 0;
-                    })
-                }
-
-                if(action.payload.orden === '> Ataque') {
-                    filtrados = filtrados.sort((a,b) => {
-                        if(parseInt(a.ataque) < parseInt(b.ataque)) {
-                            return 1;
-                        }
-                        if(parseInt(a.ataque) > parseInt(b.ataque)) {
-                            return -1;
-                        }
-                        return 0;
-                    })
-                }
-
-                if(action.payload.orden === '< Ataque') {
-                    filtrados = filtrados.sort((a,b) => {
-                        if(parseInt(a.ataque) > parseInt(b.ataque)) {
-                            return 1;
-                        }
-                        if(parseInt(a.ataque) < parseInt(b.ataque)){
-                            return -1;
-                        }
-                        return 0;
-                    })
-                }
-
-                return {
-                    ...state,
-                    pokemones: filtrados
-                }
 
             default:
                 return state;

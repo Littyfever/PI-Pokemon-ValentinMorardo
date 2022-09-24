@@ -6,27 +6,24 @@ import { getTypes, filterPokemones } from '../../actions/index';
 import CardFiltrado from "./cardFiltrado";
 const Filtrado = () => {
 
+    const dispatch = useDispatch();
+
     const creados = [{nombre: 'Creados'}, {nombre: 'Existentes'}]
     const order = [{nombre: 'A-Z'}, {nombre: 'Z-A'}, {nombre: '< Ataque'}, {nombre: '> Ataque'}]
 
-    const dispatch = useDispatch();
     const allTypes = useSelector((state => state.tipos))
 
     const [filtros, setFiltros] = useState({
         createdInDb: 'Todos',
         Tipos: 'Todos',
-        
     });
     
     function handlerFilter(propiedad) {
         return (valor) => {
-
             setFiltros({...filtros, [propiedad]: valor})
             dispatch(filterPokemones({...filtros, [propiedad]: valor}))
         }
     }
-
-
 
     useEffect (() =>  {
         dispatch(getTypes())

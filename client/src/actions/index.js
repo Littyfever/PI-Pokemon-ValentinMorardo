@@ -31,6 +31,24 @@ const filterPokemones = (payload) => {
     }
 }
 
+const getNamePokemon = (payload) => {
+    return async function (dispatch) {
+        try {
+            var name = await axios.get(`http://localhost:3001/pokemons?name=${payload}`);
+            return dispatch({
+
+                type: 'GET_NAME_POKEMON',
+                payload: name.data
+            })
+
+        } catch(error) {   
+            console.log(error);
+        }
+
+    }
+
+}
 
 
-export  {getPokemones, getTypes, filterPokemones};
+
+export  {getPokemones, getTypes, filterPokemones, getNamePokemon};
