@@ -1,16 +1,35 @@
 import axios from 'axios';
 
-const getPokemones = () => {
-    return async function (dispatch) {
-        var allPokemones = await axios.get('http://localhost:3001/pokemons', {
-            
-        });
-        return dispatch({
-            type: 'GET_POKEMONES',
-            payload: allPokemones.data
-        })
+const getPokemones = (payload) => {
+
+/*  ||||||||||||||||||||||||||||||||||||||||||||||||   */
+    if(!payload) {
+        return async function (dispatch) {
+            var allPokemones = await axios.get('http://localhost:3001/pokemons', {
+            });
+            return dispatch({
+                type: 'GET_POKEMONES',
+                payload: allPokemones.data
+            })
+        }
+
+    } else {
+
+        return async function (dispatch) {
+            try {
+                var nombrePokemon = await axios.get(`http://localhost:3001/pokemons?name=${payload}`);
+                return dispatch({
+                    type: 'GET_NAME_POKEMON',
+                    payload: nombrePokemon.data
+                })
+            } catch(error) {   
+                console.log(error);
+            }
+        }
     }
 }
+
+ /*  ||||||||||||||||||||||||||||||||||||||||||||||||   */
 
 const getTypes = () => {
     return async function (dispatch) {
@@ -24,6 +43,8 @@ const getTypes = () => {
     }
 }
 
+/*  ||||||||||||||||||||||||||||||||||||||||||||||||   */
+
 const filterPokemones = (payload) => {
     return {
         type: 'FILTER_POKEMONES',
@@ -31,7 +52,10 @@ const filterPokemones = (payload) => {
     }
 }
 
-const getNamePokemon = (payload) => {
+/*  ||||||||||||||||||||||||||||||||||||||||||||||||   */
+
+{
+/* const getNamePokemon = (payload) => {
     return async function (dispatch) {
         try {
             var name = await axios.get(`http://localhost:3001/pokemons?name=${payload}`);
@@ -47,8 +71,17 @@ const getNamePokemon = (payload) => {
 
     }
 
+} */
+}
+
+/*  ||||||||||||||||||||||||||||||||||||||||||||||||   */
+
+const postPokemon = (payload) => {
+    return async function(dispatch) {
+        const response = await axios.post('http://localhost:3001/pokemons', payload);
+        return response; 
+    }
 }
 
 
-
-export  {getPokemones, getTypes, filterPokemones, getNamePokemon};
+export  {getPokemones, getTypes, filterPokemones, postPokemon};

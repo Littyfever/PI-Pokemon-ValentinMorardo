@@ -16,6 +16,14 @@ case 'GET_POKEMONES':
 
 /*  ||||||||||||||||||||||||||||||||||||||||||||||||   */
 
+case 'GET_NAME_POKEMON':
+    return {
+        ...state,
+        pokemones: action.payload
+}
+
+/*  ||||||||||||||||||||||||||||||||||||||||||||||||   */
+
 case 'GET_TYPES':
     return {
         ...state,
@@ -108,17 +116,16 @@ case 'FILTER_POKEMONES':
     }
     
 /*  ||||||||||||||||||||||||||||||||||||||||||||||||   */
-case 'GET_NAME_POKEMON':
+case 'POST_POKEMON' :
     return {
         ...state,
-        pokemones: action.payload
     }
 
+/*  ||||||||||||||||||||||||||||||||||||||||||||||||   */
+default:
+    return state;
 
-            default:
-                return state;
     }
-
 };
 
 export default rootReducer;

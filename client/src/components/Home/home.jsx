@@ -38,11 +38,9 @@ const Home = () => {
         dispatch(getPokemones());
     }
 
-
         return ( 
          <div>
-
-            <Link to='/pokemon'>
+            <Link to='/crearpokemon'>
                 Crear Pokemon
             </Link>
             

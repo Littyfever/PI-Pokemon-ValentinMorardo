@@ -2,7 +2,7 @@ import React from "react";
 import { useState} from 'react';
 import { useDispatch} from 'react-redux';
 
-import { getNamePokemon } from "../../actions/index";
+import { getPokemones } from "../../actions/index";
 
 const SearchBar = () => {
 
@@ -12,13 +12,11 @@ const SearchBar = () => {
     function handleInput(e) {
         e.preventDefault();
         setName(e.target.value);
-
     }
 
     function handleSubmit(e) {
         e.preventDefault();
-        dispatch(getNamePokemon(name));
-
+        dispatch(getPokemones(name));
     }
 
     return (
