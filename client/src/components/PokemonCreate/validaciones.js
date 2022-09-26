@@ -80,7 +80,7 @@ const validacion = (input) => {
 
                         //IMAGEN
     if( !(validacionUrl.test(input.imagen)) ) {
-        errores.imagen = 'Ingrese un URL correcta'
+        errores.imagen = 'Ingrese un URL correcto'
     }
 
 

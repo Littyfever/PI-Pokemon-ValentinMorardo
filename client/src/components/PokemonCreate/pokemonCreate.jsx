@@ -79,6 +79,8 @@ const PokemonCreate = () => {
             } else {
                 alert('Alguno de los campos es incorrecto')
             }
+
+            console.log(input);
     }
  /*  |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||   */
 
