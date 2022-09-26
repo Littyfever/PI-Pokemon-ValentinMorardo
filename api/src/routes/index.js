@@ -64,7 +64,7 @@ router.get("/pokemons", async (req, res, next) =>{
     const name = req.query.name;
     let todosLosPokemones = await getAllPokemones();
     if(name) {
-        let pokemonName = todosLosPokemones.filter(el => el.Nombre.toLowerCase().includes(name.toLowerCase()))
+        let pokemonName = todosLosPokemones.filter(el => el.nombre.toLowerCase().includes(name.toLowerCase()))
         if(pokemonName.length){
             res.status(200).json(pokemonName);
         } else {
@@ -75,27 +75,59 @@ router.get("/pokemons", async (req, res, next) =>{
     }
 })
 
-router.get("/types", async (req, res) => {
-    const url = 'https://pokeapi.co/api/v2/type';
-    let tiposAPI = await axios.get(url);
-    res.status(200).send(tiposAPI.data.results.map(el => {
-        return ({
-            nombre: el.name
-        })
-    }))
-})
-router.get('/pokemons/:idPokemon', async (req, res) => {
-    let idPokemon = parseInt(req.params.idPokemon);
+/*  ||||||||||||||||||||||||||||||||||||||||||||||||   */
 
-    let todosLosPokemones = await getAllPokemones();
+router.get("/types", async (req, res) => {
+
+    let tipos = await Tipo.findAll();
+    res.status(200).send(tipos);
+
+}) 
+
+/*  ||||||||||||||||||||||||||||||||||||||||||||||||   */
+
+router.get('/pokemons/:idPokemon', async (req, res, next) => {
+    let idPokemon = req.params.idPokemon;
+
+
     if(idPokemon) {
-        let pokemon = todosLosPokemones.find(el => el.ID === idPokemon)
+        let pokemon;
+        console.log(idPokemon.length)
+        if(idPokemon.length === 36){
+            pokemon = await Pokemon.findByPk(idPokemon, {
+                include: Tipo
+            })
+
+        } else {
+            pokemon = await axios.get(`https://pokeapi.co/api/v2/pokemon/${idPokemon}/`);
+            pokemon = pokemon.data;
+
+                pokemon = {
+                id: pokemon.id,
+                nombre: pokemon.name,
+                Tipos: pokemon.types.map(el => {
+                    return ({
+                        nombre: el.type.name
+                    })
+                }),
+                vida: pokemon.stats[0].base_stat,
+                ataque: pokemon.stats[1].base_stat,
+                defensa: pokemon.stats[2].base_stat,
+                velocidad: pokemon.stats[3].base_stat,
+                altura: pokemon.height,
+                peso: pokemon.weight,
+                imagen: pokemon.sprites.other.home.front_default
+            };
+
+        } 
+
         if(pokemon) {
             res.status(200).send(pokemon);
-        } else{
-            next({status: 404, message: 'no existe pokemon con ese ID'});
         }
-    }
+
+}
+    next({status: 404, message: 'no existe pokemon con ese ID'});
+
 })
 
 
@@ -113,6 +145,7 @@ router.post('/pokemons', async (req, res, next) => {
         imagen
     } = req.body
 
+    
     const [pokemon, created] = await Pokemon.findOrCreate({
         where: {nombre},
         defaults: {
@@ -126,6 +159,7 @@ router.post('/pokemons', async (req, res, next) => {
             imagen
         }
     })
+
     if(created) {
         pokemon.setTipos(tipos)
     }
@@ -135,5 +169,9 @@ router.post('/pokemons', async (req, res, next) => {
         next(error);
     }
 })
+
+
+
+
 
 module.exports = router;
