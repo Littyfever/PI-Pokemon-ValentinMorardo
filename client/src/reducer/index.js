@@ -1,7 +1,8 @@
 const initialState =  {
     pokemones: [],
     allPokemones: [],
-    tipos: []
+    tipos: [],
+    detail: { }
 }
 
 const rootReducer = (state = initialState, action) => {
@@ -14,13 +15,6 @@ case 'GET_POKEMONES':
         allPokemones: action.payload /* pokemones q me traigo intactos de la db y api para trabajarlos aca */
     }
 
-/*  ||||||||||||||||||||||||||||||||||||||||||||||||   */
-
-case 'GET_NAME_POKEMON':
-    return {
-        ...state,
-        pokemones: action.payload
-}
 
 /*  ||||||||||||||||||||||||||||||||||||||||||||||||   */
 
@@ -122,9 +116,18 @@ case 'POST_POKEMON' :
     }
 
 /*  ||||||||||||||||||||||||||||||||||||||||||||||||   */
+
+case 'POKEMON_DETAIL':
+    return {
+        ...state,
+        detail: action.payload
+    }
+
+
+
 default:
     return state;
-
+   
     }
 };
 

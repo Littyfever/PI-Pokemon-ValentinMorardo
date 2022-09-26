@@ -16,6 +16,7 @@ const Filtrado = () => {
     const [filtros, setFiltros] = useState({
         createdInDb: 'Todos',
         Tipos: 'Todos',
+        orden: 'A-Z'
     });
     
     function handlerFilter(propiedad) {

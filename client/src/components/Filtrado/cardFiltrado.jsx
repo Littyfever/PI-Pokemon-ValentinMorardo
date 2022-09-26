@@ -10,7 +10,7 @@ const CardFiltrado = ({options, titulo, handlerFilter }) => {
 
                 <h5>{titulo}</h5>
                 <select onChange={e => {handlerFilter(e.target.value)} }>
-                    {<option value='Todos'>Todos</option>}
+                    {titulo !== 'Orden' && <option value='Todos'>Todos</option>}
                     {options.map((e) => (            
                         <option value={e.nombre}>{e.nombre}</option>
                     ))}

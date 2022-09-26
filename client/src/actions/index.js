@@ -3,29 +3,17 @@ import axios from 'axios';
 const getPokemones = (payload) => {
 
 /*  ||||||||||||||||||||||||||||||||||||||||||||||||   */
-    if(!payload) {
-        return async function (dispatch) {
-            var allPokemones = await axios.get('http://localhost:3001/pokemons', {
-            });
-            return dispatch({
-                type: 'GET_POKEMONES',
-                payload: allPokemones.data
-            })
-        }
-
-    } else {
-
-        return async function (dispatch) {
-            try {
-                var nombrePokemon = await axios.get(`http://localhost:3001/pokemons?name=${payload}`);
-                return dispatch({
-                    type: 'GET_NAME_POKEMON',
-                    payload: nombrePokemon.data
-                })
-            } catch(error) {   
-                console.log(error);
+ 
+    return async function (dispatch) {
+        var allPokemones = await axios.get('http://localhost:3001/pokemons', {
+            params: {
+                name: payload
             }
-        }
+        });
+        return dispatch({
+            type: 'GET_POKEMONES',
+            payload: allPokemones.data
+        })
     }
 }
 
@@ -83,5 +71,20 @@ const postPokemon = (payload) => {
     }
 }
 
+/*  ||||||||||||||||||||||||||||||||||||||||||||||||   */
 
-export  {getPokemones, getTypes, filterPokemones, postPokemon};
+const pokemonDetail = (payload) => {
+    
+    return async function (dispatch) {
+        var pokemon = await axios.get(`http://localhost:3001/pokemons/${payload}`);
+
+        return dispatch({
+            type: 'POKEMON_DETAIL',
+            payload: pokemon.data
+        })
+    }
+}
+
+
+
+export  {getPokemones, getTypes, filterPokemones, postPokemon, pokemonDetail};
