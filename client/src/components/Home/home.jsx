@@ -3,6 +3,7 @@ import { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { getPokemones, getTypes} from '../../actions/index';
 import {Link} from 'react-router-dom'; 
+import Loading from '../Loading/loading';
 import Cards from '../Cards/cards';
 import Paginado from '../Paginado/paginado';
 import Filtrado from '../Filtrado/filtrado';
@@ -39,25 +40,31 @@ const Home = () => {
     }
 
         return ( 
-         <div>
-            <Link to='/crearpokemon'>
-                Crear Pokemon
-            </Link>
-            
-            <h1>POKEMON HOME</h1>
-            <button onClick={e => {handleClick(e)}}>
-                volver a cargar todos los pokemones
-            </button>
+            <div>
+                
+                { pokemones.length > 0? 
+                    <div>
+                        <Link to='/crearpokemon'>
+                            Crear Pokemon
+                        </Link>
+                        
+                        <h1>POKEMON HOME</h1>
+                        <button onClick={e => {handleClick(e)}}>
+                            volver a cargar todos los pokemones
+                        </button>
 
-            
-            <SearchBar /> 
-            <Filtrado />
-            <Paginado pokemonesPerPage={pokemonesPerPage} allPokemones={pokemones.length} paginado={paginado}/>
-            
-            <Cards pokemones={currentPokemon}/>
+                        
+                        <SearchBar /> 
+                        <Filtrado />
+                        <Paginado pokemonesPerPage={pokemonesPerPage} allPokemones={pokemones.length} paginado={paginado}/>
+                        
+                        <Cards pokemones={currentPokemon}/>
+                        
+                    </div> : 
+                    <Loading/>
+                }
 
-         </div>
-
+            </div>
     )
 }
 

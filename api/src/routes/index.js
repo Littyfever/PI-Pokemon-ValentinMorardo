@@ -90,6 +90,7 @@ router.get('/pokemons/:idPokemon', async (req, res, next) => {
     let idPokemon = req.params.idPokemon;
 
 
+
     if(idPokemon) {
         let pokemon;
         console.log(idPokemon.length)
@@ -99,7 +100,7 @@ router.get('/pokemons/:idPokemon', async (req, res, next) => {
             })
 
         } else {
-            pokemon = await axios.get(`https://pokeapi.co/api/v2/pokemon/${idPokemon}/`);
+            pokemon = await axios.get(`https://pokeapi.co/api/v2/pokemon/${(idPokemon)}/`);
             pokemon = pokemon.data;
 
                 pokemon = {

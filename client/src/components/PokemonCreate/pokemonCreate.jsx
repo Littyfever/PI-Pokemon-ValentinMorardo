@@ -5,6 +5,7 @@ import { getTypes, postPokemon } from '../../actions/index';
 import {Link, useHistory} from 'react-router-dom'; 
 import validacion from './validaciones';
 
+
 const PokemonCreate = () => {
 
 /*  |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||   */
@@ -42,6 +43,7 @@ const PokemonCreate = () => {
     function handleCheckClick(e) { // handle de los inputs checkbox
 
         const inputState = input.tipos? input.tipos : [];
+        const inputErrores = input.tipos? input.tipos : [];
 
         if( !(inputState.includes(e.target.value)) ) {
             setInput ( {
@@ -55,7 +57,19 @@ const PokemonCreate = () => {
             })
         }
 
-        console.log(input);
+        if( !(inputErrores.includes(e.target.value)) ) {
+            setErrores(validacion({
+                ...input,
+                [e.target.name]: e.target.value 
+            }))
+
+        } else {
+            setErrores(validacion({
+                ...input,
+                tipos: inputErrores?.filter( (el) =>  el !== e.target.value )
+            }))
+        }
+        
     }
         
 /*  |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||   */
@@ -80,7 +94,7 @@ const PokemonCreate = () => {
                 alert('Alguno de los campos es incorrecto')
             }
 
-            console.log(input);
+
     }
  /*  |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||   */
 
@@ -143,6 +157,7 @@ const PokemonCreate = () => {
                                     </label>
                             ))
                         }
+                        <span>{errores.errorTipos}</span>
                 </div>
                 <div>
                     <label>URL Imagen:</label>
