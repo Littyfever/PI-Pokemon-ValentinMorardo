@@ -1,4 +1,5 @@
 import React from "react";
+import styles from './paginado.module.css';
 
 
 const paginado = ({pokemonesPerPage, allPokemones, paginado}) => {
@@ -12,7 +13,7 @@ const paginado = ({pokemonesPerPage, allPokemones, paginado}) => {
     return (
         <nav>
 
-            <ul>
+            <ul >
                 {
                     pageNumbers &&  pageNumbers.map(number => (
                         <li className="number" key={number}>

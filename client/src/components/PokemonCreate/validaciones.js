@@ -5,8 +5,7 @@ const validacion = (input) => {
     let validacionUrl = /^(ftp|http|https):\/\/[^ "]+$/;
     let errores= {}
 
-    
-                    // NOMBRE
+                        // NOMBRE
     if(input.nombre) {
         if(input.nombre.length > 20) {
             errores.nombre = 'El maximo de caracteres para nombre es 20!';
@@ -40,7 +39,7 @@ const validacion = (input) => {
         }
     }
 
-                    //DEFENSA
+                        //DEFENSA
     if(input.defensa) {
         if(!(validacionNumeros.test(input.defensa))) {
             errores.defensa = 'La defensa solo puede contener numeros!';
@@ -92,7 +91,8 @@ const validacion = (input) => {
             errores.imagen = 'Ingrese un URL correcto'
         }
     }
-    
+
+     
     return errores;
 }
 export default validacion;

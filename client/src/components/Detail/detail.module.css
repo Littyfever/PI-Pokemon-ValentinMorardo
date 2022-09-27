@@ -1,0 +1,60 @@
+.fondo{
+    background:url('../IMAGENES/detail/fondo.png') no-repeat center center fixed;
+    background-size: cover;
+    height: 100vh;
+    width: 100vw;
+    position: fixed;
+}
+.container{
+    margin: 100px auto;
+    text-align: center;
+    width: 944px;
+    height: auto;
+}
+.noExiste {
+    text-shadow: 0 0 10px rgb(9, 187, 207);
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 60px;
+}
+
+.pikaSad {
+    border-radius: 50%;
+    box-shadow: 0 0 100px rgb(9, 187, 207);
+}
+ 
+#botonHome {
+    width: 150px; 
+    height: 100px;
+    font-size: 23px;
+    border-radius: 10px;
+    background-color: transparent;
+}
+#botonHome:hover {
+    background: rgb(9, 187, 207);
+}
+
+.container2{
+    border: solid;
+    margin: 100px auto;
+    text-align: center;
+    width: 944px;
+    height: auto;
+}
+
+#nombrePokemon {
+    text-transform:uppercase;
+    text-decoration:underline;
+    text-shadow: 0 0 10px rgb(9, 187, 207);
+}
+
+.nombreEstadisticas {
+    font-size: 23px;
+}
+
+
+
+
+

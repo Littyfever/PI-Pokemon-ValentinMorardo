@@ -90,10 +90,9 @@ router.get('/pokemons/:idPokemon', async (req, res, next) => {
     let idPokemon = req.params.idPokemon;
 
 
-
     if(idPokemon) {
         let pokemon;
-        console.log(idPokemon.length)
+
         if(idPokemon.length === 36){
             pokemon = await Pokemon.findByPk(idPokemon, {
                 include: Tipo
@@ -119,15 +118,15 @@ router.get('/pokemons/:idPokemon', async (req, res, next) => {
                 peso: pokemon.weight,
                 imagen: pokemon.sprites.other.home.front_default
             };
-
         } 
 
         if(pokemon) {
             res.status(200).send(pokemon);
         }
-
-}
-    next({status: 404, message: 'no existe pokemon con ese ID'});
+    }else {
+        next({status: 404, message: 'no existe pokemon con ese ID'});
+    }
+    
 
 })
 
@@ -146,7 +145,6 @@ router.post('/pokemons', async (req, res, next) => {
         imagen
     } = req.body
 
-    
     const [pokemon, created] = await Pokemon.findOrCreate({
         where: {nombre},
         defaults: {

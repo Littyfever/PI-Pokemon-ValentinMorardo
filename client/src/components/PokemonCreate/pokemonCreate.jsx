@@ -43,7 +43,7 @@ const PokemonCreate = () => {
     function handleCheckClick(e) { // handle de los inputs checkbox
 
         const inputState = input.tipos? input.tipos : [];
-        const inputErrores = input.tipos? input.tipos : [];
+
 
         if( !(inputState.includes(e.target.value)) ) {
             setInput ( {
@@ -56,20 +56,6 @@ const PokemonCreate = () => {
                 tipos:  inputState?.filter( (el) =>  el !== e.target.value )
             })
         }
-
-        if( !(inputErrores.includes(e.target.value)) ) {
-            setErrores(validacion({
-                ...input,
-                [e.target.name]: e.target.value 
-            }))
-
-        } else {
-            setErrores(validacion({
-                ...input,
-                tipos: inputErrores?.filter( (el) =>  el !== e.target.value )
-            }))
-        }
-        
     }
         
 /*  |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||   */
@@ -85,7 +71,6 @@ const PokemonCreate = () => {
         } else if ( Object.values(input).length && Object.values(errores).length === 0 ) {
 
                 dispatch(postPokemon(input));
-                console.log(input)
                 setInput({});
 
                 alert('POKEMON CREADO!');
@@ -93,8 +78,6 @@ const PokemonCreate = () => {
             } else {
                 alert('Alguno de los campos es incorrecto')
             }
-
-
     }
  /*  |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||   */
 

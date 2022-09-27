@@ -1,34 +1,32 @@
+.fondo{
+    background:url('../IMAGENES/landing/fondo.jpg') no-repeat center center fixed;
+    background-size: cover;
+    height: 100vh;
+    width: 100vw;
+    position: fixed;
+}
 
+.container{
+    margin: 350px auto;
+    text-align: center;
+    width: 700px;
+    height: auto;
+    border:solid 10px;
+    border-radius: 1500px;
+    border-style:groove;
+    border-color: rgba(219, 69, 224, 0.456);
+}
 .gif{
-    width: 15vw;
-    height: 15vh;
-    margin-top: 20vh;
+    width: 20vw;
+    height: 30vh;
 }
+#cargando {
+    font-size: 70px;
+    font-style:italic;
 
-@media(max-width:767px){
-    .gif{
-        width: 39vw;
-        height: 20vh;
-        margin-top: 20vh;
-    }
-    .loading{
-        margin-top: 0vh;
-        width:40vw;
-        height: 10vh;
-    }
+    text-shadow: 
+        3px 3px 1px rgba(219, 69, 224),
+        8px 8px 3px rgb(32, 123, 136);
+        ;
 
-
-}
-@media(min-width:767px) and (max-width:1023px){
-
-    .gif{
-        width: 30vw;
-        height: 20vh;
-        margin-top: 20vh;
-    }
-    .loading{
-        margin-top: 0vh;
-        width:30vw;
-        height: 10vh;
-    }
 }
