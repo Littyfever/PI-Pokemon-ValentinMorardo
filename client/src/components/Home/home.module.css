@@ -1,0 +1,54 @@
+.fondo {
+        background:url('../IMAGENES/detail/fondo.png');
+        background-size: cover;
+        height: 100vh;
+        width: 100vw;
+        position: fixed;
+}
+
+.imagen{
+        height: 200px;
+        width: auto;
+}
+.containerUtility{
+        display: flex;
+        justify-content: space-around;
+        width: 80%;
+        align-items: center;
+}
+.containerMenu {
+        display:flex ;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        gap: 10px;
+        padding-bottom: 30px;
+}
+
+.filtrado {
+        display:flex ;
+        justify-content: center;
+        align-items: center;
+}
+
+.itemsError{
+        margin: 100px auto;
+        text-align: center;
+        width: 944px;
+        height: auto;
+}
+.noExiste {
+        text-shadow: 0 0 10px rgb(9, 187, 207);
+        text-align: center;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 60px;
+
+}
+    
+.pikaSad {
+        border-radius: 50%;
+        box-shadow: 0 0 100px rgb(9, 187, 207);
+
+}

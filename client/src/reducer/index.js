@@ -2,7 +2,8 @@ const initialState =  {
     pokemones: [],
     allPokemones: [],
     tipos: [],
-    detail: { }
+    detail: {},
+    mensajeErr: {}
 }
 
 const rootReducer = (state = initialState, action) => {
@@ -13,6 +14,13 @@ case 'GET_POKEMONES':
         ...state,
         pokemones: action.payload, /* pokemones q renderizo en el home */
         allPokemones: action.payload /* pokemones q me traigo intactos de la db y api para trabajarlos aca */
+    }
+
+
+case 'ERROR_MENSAJE':
+    return {
+        ...state,
+        mensajeErr: action.payload
     }
 
 
@@ -28,8 +36,10 @@ case 'GET_TYPES':
 
 case 'FILTER_POKEMONES':
     const filtros = Object.entries(action.payload);
+    console.log(filtros)
 
     let filtrados = [...state.allPokemones].filter((pokemon) => {
+
         let origen = false;
         let tipo = false;
 
@@ -54,6 +64,7 @@ case 'FILTER_POKEMONES':
                 }
             }
         })
+
         return origen && tipo;
     })
 

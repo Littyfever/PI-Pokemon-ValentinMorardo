@@ -36,8 +36,9 @@ const Detail = (props) => {
                     <img src={pikachuSad} className={styles.pikaSad} width='500' height='400'/>
                 </div>
                 <div className={styles.container}>
+
                     <Link to='/home'>
-                        <button id={styles.botonHome} width='500' height='400'>VOLVER A HOME</button>
+                        <button className={styles.botonHome} >VOLVER A HOME</button>
                     </Link>
                 </div>
             </div>
@@ -50,34 +51,30 @@ const Detail = (props) => {
                 
                 <div className={styles.container2}>
 
-                    {/* <Link to='/home'>
-                        <button>volver</button>
-                    </Link> */}
+                    <Link to='/home'>
+                        <button className={styles.botonHome}>VOLVER</button>
+                    </Link> 
                     
-                    <div> 
+
                         <h1 id={styles.nombrePokemon}>{pokemon.nombre}</h1>
-                    </div>
-
-                    <div>
                         <img src={pokemon.imagen} />
-                    </div>
 
-                    <div>
-                        
-                        <p className={styles.estadisticas}>VIDA: {pokemon.vida}</p> 
-                        <p className={styles.estadisticas}> ATAQUE: {pokemon.ataque}</p>
-                        <p className={styles.estadisticas}> DEFENSA: {pokemon.defensa}</p>
-                        <p className={styles.estadisticas}> VELOCIDAD: {pokemon.velocidad}</p>
-                        <p className={styles.estadisticas}> PESO: {pokemon.peso}</p>
-                        <p className={styles.estadisticas}> ALTURA: {pokemon.altura}</p> 
+                    <div className={styles.detalles}>
+        
+                        <div className={styles.estadisticas}> <span className={styles.nombreDato}>VIDA:</span> <span className={styles.dato}>{pokemon.vida}</span></div> 
+                        <div className={styles.estadisticas}> <span className={styles.nombreDato}>ATAQUE:</span> <span className={styles.dato}>{pokemon.ataque}</span></div>
+                        <div className={styles.estadisticas}> <span className={styles.nombreDato}>DEFENSA:</span> <span className={styles.dato}>{pokemon.defensa}</span></div>
+                        <div className={styles.estadisticas}> <span className={styles.nombreDato}>VELOCIDAD:</span> <span className={styles.dato}>{pokemon.velocidad}</span></div>
+                        <div className={styles.estadisticas}> <span className={styles.nombreDato}>PESO:</span> <span className={styles.dato}>{pokemon.peso}</span></div>
+                        <div className={styles.estadisticas}> <span className={styles.nombreDato}>ALTURA:</span> <span className={styles.dato}>{pokemon.altura}</span></div> 
 
-                        <p className={styles.estadisticas}> TIPOS:{
+                        <div className={styles.estadisticas2}> <span className={styles.nombreDato}>TIPOS:</span>{
                             pokemon.Tipos?.map((e) => 
-                                <span> {e.nombre} </span>
+                                <span className={styles.tipo}> {e.nombre.toUpperCase()} </span>
                             )
-                        }  </p>
+                            }
+                        </div>
                     </div>
-
                 </div>  
 
             </div>

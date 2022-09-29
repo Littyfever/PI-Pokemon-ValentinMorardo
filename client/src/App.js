@@ -4,6 +4,7 @@ import landingPage from './components/LandingPage/landingPage';
 import Home from './components/Home/home';
 import pokemonCreate from './components/PokemonCreate/pokemonCreate';
 import detail from './components/Detail/detail';
+import Loading from './components/Loading/loading';
 
  
 function App() {
@@ -15,6 +16,7 @@ function App() {
             <Route path="/home" component={Home} />
             <Route exact path="/crearpokemon" component={pokemonCreate} />
             <Route path='/pokemon/:id' component={detail} />
+            {/* <Route path='/loading' component={Loading} /> */}
         </Switch>
       </div>
     </BrowserRouter>

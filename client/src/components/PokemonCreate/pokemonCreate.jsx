@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { getTypes, postPokemon } from '../../actions/index';
 import {Link, useHistory} from 'react-router-dom'; 
 import validacion from './validaciones';
+import styles from '../PokemonCreate/pokemonCreate.module.css'
 
 
 const PokemonCreate = () => {
@@ -40,10 +41,9 @@ const PokemonCreate = () => {
 
 /*  |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||   */
 
-    function handleCheckClick(e) { // handle de los inputs checkbox
-
+    function handleCheckClick(e) { // handle de los checkbox
+        
         const inputState = input.tipos? input.tipos : [];
-
 
         if( !(inputState.includes(e.target.value)) ) {
             setInput ( {
@@ -56,6 +56,8 @@ const PokemonCreate = () => {
                 tipos:  inputState?.filter( (el) =>  el !== e.target.value )
             })
         }
+
+        console.log(input);
     }
         
 /*  |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||   */
@@ -83,72 +85,86 @@ const PokemonCreate = () => {
 
 
     return (    
-        <div>
-            <Link to='/home'>
-                <button>VOLVER</button>
-            </Link>
+        <div className={styles.fondo}>
 
-            <h1>Crea tu pokemon!</h1>
+            <div className={styles.container}>
 
-            <form onSubmit={(e) => handleSubmit(e)}>
-                <div>
-                    <label>Nombre: </label>
-                    <input type='text' placeholder='nombre...' value={input.nombre} name='nombre' onChange={(e) => handleChange(e)}></input>
-                    <label> *</label>
-                    <span>{errores.nombre}</span>
-                </div>
-                <div> 
-                    <label>Vida:  </label>
-                    <input type='number' placeholder='vida...' value={input.vida} name='vida' onChange={(e) => handleChange(e)}></input>
-                    <span>{errores.vida}</span>
-                </div>
-                <div>
-                    <label>Daño de ataque: </label>
-                    <input type='number' placeholder='ataque...' value={input.ataque} name='ataque' onChange={(e) => handleChange(e)}></input>
-                    <span>{errores.ataque}</span>
-                </div>
-                <div>
-                    <label>Cantidad de defensa: </label>
-                    <input type='number' placeholder='defensa...' value={input.defensa} name='defensa' onChange={(e) => handleChange(e)}></input>
-                    <span>{errores.defensa}</span>
-                </div>
-                <div>
-                    <label>Velocidad: </label>
-                    <input type='number' placeholder='velocidad...' value={input.velocidad} name='velocidad' onChange={(e) => handleChange(e)}></input>
-                    <span>{errores.velocidad}</span>
-                </div>
-                <div>
-                    <label>Altura: </label>
-                    <input type='number' placeholder='altura...' value={input.altura} name='altura' onChange={(e) => handleChange(e)}></input>
-                    <label> centimetros</label>
-                    <span>{errores.altura}</span>
-                </div>
-                <div>
-                    <label>Peso: </label>
-                    <input type='number' placeholder='peso...' value={input.peso} name='peso' onChange={(e) => handleChange(e)}></input>
-                    <label> kg</label>
-                    <span>{errores.peso}</span>
-                </div>
-                <div>
-                    <label>Tipo: </label>
-                        {
-                            allTypes?.map((e) => (
-                                    <label> {e.nombre} 
+                <Link to='/home'>
+                    <button className={styles.volver}>VOLVER</button>
+                </Link>
 
-                                        <input type='checkbox' value={e.id} name='tipos' /* onChange={(e) => handleCheck(e)} */ onClick={(e) => { handleCheckClick(e) }}></input>
+                <h1>CREA TU POKEMON!</h1>
 
-                                    </label>
-                            ))
-                        }
-                        <span>{errores.errorTipos}</span>
-                </div>
-                <div>
-                    <label>URL Imagen:</label>
-                    <input type='text' placeholder='url...' value={input.imagen} name='imagen' onChange={(e) => handleChange(e)}></input>
-                    <span>{errores.imagen}</span>
-                </div>
-                <button type='submit'>CREAR</button>
-            </form> 
+                <form>
+                    <div className={styles.campo}>
+                        
+                        <label className={styles.label}>NOMBRE: </label>
+                        <input className={styles.input} type='text' placeholder='nombre...' value={input.nombre} name='nombre' onChange={(e) => handleChange(e)}></input>
+                        <span className={styles.errores}> {errores.nombre}</span>
+                        
+                    </div>
+
+                    <div className={styles.campo}> 
+                        <label className={styles.label}>VIDA: </label>
+                        <input className={styles.input} type='number' placeholder='vida...' value={input.vida} name='vida' onChange={(e) => handleChange(e)}></input>
+                        <span className={styles.errores}>{errores.vida}</span>
+                    </div>
+
+                    <div className={styles.campo}>
+                        <label className={styles.label}>DAÑO DE ATAQUE: </label>
+                        <input className={styles.input} type='number' placeholder='ataque...' value={input.ataque} name='ataque' onChange={(e) => handleChange(e)}></input>
+                        <span className={styles.errores}>{errores.ataque}</span>
+                    </div>
+
+                    <div className={styles.campo}>
+                        <label className={styles.label}>CANTIDAD DE DEFENSA: </label>
+                        <input className={styles.input} type='number' placeholder='defensa...' value={input.defensa} name='defensa' onChange={(e) => handleChange(e)}></input>
+                        <span className={styles.errores}>{errores.defensa}</span>
+                    </div>
+
+                    <div className={styles.campo}>
+                        <label className={styles.label}>VELOCIDAD: </label>
+                        <input className={styles.input} type='number' placeholder='velocidad...' value={input.velocidad} name='velocidad' onChange={(e) => handleChange(e)}></input>
+                        <span className={styles.errores}>{errores.velocidad}</span>
+                    </div>
+
+                    <div className={styles.campo}>
+                        <label className={styles.label}>ALTURA: </label>
+                        <input className={styles.input} type='number' placeholder='altura...' value={input.altura} name='altura' onChange={(e) => handleChange(e)}></input>
+                        <span className={styles.errores}>{errores.altura}</span>
+                    </div>
+
+                    <div className={styles.campo}> 
+                        <label className={styles.label}>PESO: </label>
+                        <input className={styles.input} type='number' placeholder='peso...' value={input.peso} name='peso' onChange={(e) => handleChange(e)}></input>
+                        <span className={styles.errores}> {errores.peso}</span>
+                    </div>
+
+
+                    <div className={styles.campo}>
+                        <label className={styles.label}>URL Imagen:</label>
+                        <input  className={styles.input} type='text' placeholder='url...' value={input.imagen} name='imagen' onChange={(e) => handleChange(e)}></input>
+                        <span className={styles.errores}> {errores.imagen}</span>
+                    </div>
+                </form> 
+
+                <div className={styles.campoTipos}>
+                        <label className={styles.label}>TIPO: </label>
+                           
+                           <div className={styles.tipos}>
+                            {
+                                allTypes?.map((e) => (
+                                        <label className={styles.labelCheck}> {e.nombre.toUpperCase()} 
+                                            <input type='checkbox' value={e.id} name='tipos' className={styles.check}/* onChange={(e) => handleCheck(e)} */ onClick={(e) => { handleCheckClick(e) }}></input>
+                                        </label> 
+                                ))
+                            }
+                            </div>
+                    </div>
+
+                    <button  onClick={(e) => handleSubmit(e)} className={styles.crear}>CREAR</button>
+                </div>  
+
         </div>
     )
 }

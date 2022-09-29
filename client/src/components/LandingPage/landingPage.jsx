@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import styles from '../LandingPage/landingPage.module.css'
-import {pikachuGif} from '../IMAGENES/imagenes'
+import {pikachuGif, pokebolaGif} from '../IMAGENES/imagenes'
 
 
 const landingPage = () => {
@@ -11,23 +11,19 @@ const landingPage = () => {
            
 
 
-            <div className={styles.container1}>
-                <div className={styles.titulo}>
+            <div className={styles.container}>
                     <h1 className={styles.titulo}>Bienvenido a la PokeWiki</h1>
-                </div>
-                <div className={styles.pikachu}>
                     <img src={pikachuGif} width='250' height='250'/>
-                </div>
             </div>
 
 
-            <div className={styles.container2}>
+            <div className={styles.container}>
                 <div className={styles.titulo}>
-                    <h1 className={styles.tituloHome}>TOCA LA POKEBOLA!</h1>
+                    <h1 className={styles.titulo}>TOCA LA POKEBOLA!</h1>
                 </div>
                 <div className={styles.divImagen}>
                     <Link to='/home'>
-                        <button className={styles.button} ><div className={styles.pokebola} /> </button>
+                       <img src={pokebolaGif} />
                     </Link>
                 </div>
             </div>

@@ -2,10 +2,9 @@ import axios from 'axios';
 
 const getPokemones = (payload) => {
 
-/*  ||||||||||||||||||||||||||||||||||||||||||||||||   */
- 
     return async function (dispatch) {
-        var allPokemones = await axios.get('http://localhost:3001/pokemons', {
+        try {
+            var allPokemones = await axios.get('http://localhost:3001/pokemons', {
             params: {
                 name: payload
             }
@@ -14,8 +13,18 @@ const getPokemones = (payload) => {
             type: 'GET_POKEMONES',
             payload: allPokemones.data
         })
-    }
+
+        } catch (error) {
+            return dispatch({
+                type: 'ERROR_MENSAJE',
+                payload: error.response
+            })
+        }
+
+    }   
 }
+
+
 
  /*  ||||||||||||||||||||||||||||||||||||||||||||||||   */
 

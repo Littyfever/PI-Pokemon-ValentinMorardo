@@ -25,23 +25,33 @@
     box-shadow: 0 0 100px rgb(9, 187, 207);
 }
  
-#botonHome {
-    width: 150px; 
-    height: 100px;
+.botonHome {
+    margin: 0 auto;
+    display: flex;
+    justify-content: center;
+    margin-top: 10px;
+    font-weight: bold;
+
     font-size: 23px;
     border-radius: 10px;
-    background-color: transparent;
+    padding: 17px 30px;
+
 }
 #botonHome:hover {
     background: rgb(9, 187, 207);
 }
 
 .container2{
-    border: solid;
+    background-color: rgba(2, 192, 250, 0.287);
     margin: 100px auto;
     text-align: center;
     width: 944px;
     height: auto;
+    border:solid 15px;
+    border-radius: 200px;
+    border-style:groove;
+    border-color: rgb(9, 187, 207, 0.456);
+
 }
 
 #nombrePokemon {
@@ -55,6 +65,62 @@
 }
 
 
+.detalles {
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    align-items: center;
+    padding: 50px 100px;
+    gap: 20px 0;
+}
 
+.estadisticas {
+    display: flex;
+    gap: 0 10px;
+    flex-wrap: wrap;
+    flex: 30%;
+    font-size: 20px;
+
+}
+
+.dato{
+    font-weight: normal;
+    text-decoration: none;
+    font-size: 20px;
+    font-style: italic;
+    background-color: rgb(9, 187, 207);
+    padding: 1px 10px;
+    border-radius: 10px;
+    border: solid;
+    border-color: black;
+    color: rgb(0, 0, 0);
+}
+
+.nombreDato{
+    background-color: rgba(212, 27, 206, 0.464);
+    padding: 1px 10px;
+    border-radius: 10px;
+    color: rgb(0, 0, 0);
+    border: solid;
+    border-color: black;
+    font-weight: bold;
+}
+
+.tipo{
+    background-color: rgb(9, 187, 207);
+    padding: 1px 10px;
+    border-radius: 50px;
+    color: rgb(0, 0, 0);
+    border: solid;
+    border-color: black;
+}
+.estadisticas2 {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+    width:80%;
+    font-size: 20px;
+}
 
 

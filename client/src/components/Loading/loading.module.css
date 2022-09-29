@@ -1,9 +1,10 @@
 .fondo{
-    background:url('../IMAGENES/landing/fondo.jpg') no-repeat center center fixed;
-    background-size: cover;
+    
+    background: rgba(0, 0, 0, 0.6);
     height: 100vh;
     width: 100vw;
     position: fixed;
+
 }
 
 .container{
@@ -30,3 +31,5 @@
         ;
 
 }
+
+

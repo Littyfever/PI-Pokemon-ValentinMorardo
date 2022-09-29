@@ -1,0 +1,15 @@
+.container{
+    background-color: rgba(2, 192, 250, 0.287);
+    height: auto;
+    width: 12%;
+    border:solid 10px;
+    border-radius: 30px;
+    border-style:groove;
+    border-color: rgba(219, 69, 224, 0.456);
+    text-align: center;
+}
+
+.titulos{
+    font-size: 17px;
+    text-decoration: none
+}

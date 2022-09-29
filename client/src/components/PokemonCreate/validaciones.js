@@ -85,6 +85,7 @@ const validacion = (input) => {
         }
     }
 
+
                         //IMAGEN
     if(input.imagen) {
         if( !(validacionUrl.test(input.imagen)) ) {
@@ -92,7 +93,6 @@ const validacion = (input) => {
         }
     }
 
-     
     return errores;
 }
 export default validacion;
