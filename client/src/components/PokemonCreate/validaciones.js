@@ -3,7 +3,7 @@ const validacion = (input) => {
     let validacionNombre = /^[a-zA-ZñÑáéíóúÁÉÍÓÚ]+$/;
     let validacionNumeros = /^[0-9]+$/;
     let validacionUrl = /^(ftp|http|https):\/\/[^ "]+$/;
-    let errores= {}
+    let errores = {}
 
                         // NOMBRE
     if(input.nombre) {

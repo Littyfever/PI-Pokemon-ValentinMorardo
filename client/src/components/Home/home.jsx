@@ -18,6 +18,8 @@ const Home = () => {
     const pokemones = useSelector ((state) => state.pokemones);
     const mensajeError = useSelector((state) => state.mensajeErr);
 
+    const [loading, setLoading] = useState(true);
+
     const [currentPage, setCurrentPage] = useState(1);
     const [pokemonesPerPage, setPokemonesPerPage] = useState(12);
     const indexLastPokemon = currentPage * pokemonesPerPage;
@@ -32,6 +34,12 @@ const Home = () => {
         dispatch(getPokemones());
         dispatch(getTypes());
     }, [dispatch])
+
+    useEffect(() => {
+        setTimeout(() => {
+            setLoading(false)
+        }, 3000)
+    }, [pokemones])
 
 
 
@@ -61,8 +69,11 @@ const Home = () => {
                 </div>
 
             </div> 
-                : 
-                <Loading/>
+                : loading?
+                <Loading />
+                
+                : <></>
+
             }
 
             {mensajeError.status &&

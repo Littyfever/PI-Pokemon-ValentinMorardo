@@ -115,6 +115,15 @@ case 'FILTER_POKEMONES':
             return 0;
         })
     }
+
+    if(filtrados.length === 0) {
+        return {
+            ...state,
+            mensajeErr: {
+                status: 404,
+            }
+        }
+    }
     return {
         ...state,
         pokemones: filtrados

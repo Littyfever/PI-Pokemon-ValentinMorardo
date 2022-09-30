@@ -19,9 +19,9 @@ const Detail = (props) => {
 
     useEffect (() =>  {
         dispatch(pokemonDetail(id));
-    }, [])
+    }, [pokemon])
 
-    
+
 
     
     if( id > 40 && id.length !== 36) {

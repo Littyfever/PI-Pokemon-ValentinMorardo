@@ -9,7 +9,7 @@ const getApiInfo = async () => {
     try {
         const url = 'https://pokeapi.co/api/v2/pokemon?offset=0&limit=40';
         let allPokemones = await axios.get(url);
-        allPokemones = allPokemones.data.results
+        allPokemones = allPokemones.data.results;
 
         let pokemonInfo = await Promise.all(allPokemones.map(async el => {
             let pokemonDetail = await axios.get(el.url);
@@ -32,7 +32,7 @@ const getApiInfo = async () => {
             }
         }))
         return pokemonInfo;
-    
+
     } catch (error) {
         console.log(error);
     }

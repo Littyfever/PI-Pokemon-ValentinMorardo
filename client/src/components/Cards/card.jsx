@@ -2,7 +2,7 @@ import React from 'react';
 import {Link} from 'react-router-dom'; 
 import styles from '../Cards/card.module.css';
 
-const card = ({id, nombre, tipos, ataque, imagen}) => {
+const card = ({id, nombre, tipos, ataque, imagen, vida}) => {
 
 
     let tiposCard1solo = [];
@@ -30,33 +30,25 @@ const card = ({id, nombre, tipos, ataque, imagen}) => {
             <Link to={`/pokemon/${id}`}>
                 <h3>{nombre.toUpperCase()}</h3>
                 <img src= {imagen} alt="img not found" width="200px" height ="250px" />
-            
-            
             { 
                 tipos.length === 1?
 
                     <h5 className={styles.titulos}>TIPOS: {tiposCard1solo?.map((e) => {
                                 return (e.nombre.toUpperCase())
                     })}</h5> 
-
                 : tipos.length === 2?
 
                     <h5 className={styles.titulos}>TIPOS: {tiposCard2tipos?.map((e) => {
                         return (e.nombre.toUpperCase() + ' ')
                     })}</h5> 
-
                 :
 
                     <h5 className={styles.titulos}>TIPOS: {tiposCardMasDe3Tipos?.map((e) => {
                         return (e.nombre.toUpperCase() + ' ')
                     })} Y MAS ...</h5> 
-
             }   
-
-
-
-
                 <h5 className={styles.titulos}>ATAQUE: {ataque}</h5>
+                <h5>VIDA: {vida}</h5>
             </Link>
         </div>
     )
